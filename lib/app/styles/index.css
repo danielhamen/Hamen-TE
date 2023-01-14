@@ -2,6 +2,8 @@
     THIS FILE CONTAINS GLOBAL CSS
 */
 
+@import url('https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400;1,700&family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 body {
     padding: 0;
     margin: 0;
@@ -9,3 +11,49 @@ body {
     width: 100vw;
     height: 100vh;
 }
+
+main {
+    width: 100%;
+    height: 100%;
+}
+
+.text {
+    font-family: 'Noto Sans', sans-serif;
+    color: var(--text-default);
+}
+
+.title-font {
+    font-family: 'Exo 2', serif;
+}
+
+
+
+/* @keyframes cursor_blink {
+    0% {
+        background: transparent;
+    }
+
+    50% {
+        background: black;
+    }
+
+    100% {
+        background: transparent;
+    }
+}
+
+.cursor {
+    position: absolute;
+    width: 2.5px;
+    height: 1em;
+    animation: 1.5s cursor_blink infinite step-end;
+    left: 0;
+    top: 0;
+    z-index: 3;
+    animation-play-state: running;
+}
+
+.cursor.paused {
+    animation-play-state: paused;
+    background: black !important;
+} */

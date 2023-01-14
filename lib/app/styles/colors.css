@@ -1,0 +1,5 @@
+:root {
+    --text-primary: hsl(0deg, 0%, 95%);
+    --text-default: hsl(0deg, 0%, 90%);
+    --text-secondary: hsl(0deg, 0%, 70%);
+}

@@ -1,0 +1,53 @@
+/* 
+    ANYTHING WITH THE CLASS `DOCUMENT:...` HAS STYLES IN THIS FILE
+*/
+
+:root {
+    --document-width: 8.5in;
+    --document-height: 11in;
+
+    --document-padding-left: 1in;
+    --document-padding-right: 1in;
+    --document-padding-top: 1in;
+    --document-padding-bottom: 1in;
+}
+
+body {
+    background: black;
+}
+
+.document\:documents {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 5em;
+    box-sizing: border-box;
+}
+
+.document\:all-documents {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.document\:document {
+    width: var(--document-width);
+    height: var(--document-height);
+    margin-left: auto;
+    margin-right: auto;
+    background: rgb(255, 255, 255);
+    border-radius: 0.3em;
+    margin-bottom: 2em;
+    box-sizing: border-box;
+    
+    overflow-wrap: break-word;
+    padding: var(--document-padding-top) var(--document-padding-right) var(--document-padding-bottom) var(--document-padding-left);
+}
+
+.document\:document-row {
+    width: 100%;
+}
