@@ -8,33 +8,350 @@
         <title>Editor</title>
 
         <link rel="stylesheet" href="styles/index.css">
-        <link rel="stylesheet" href="styles/file-bar.css">
-        <link rel="stylesheet" href="styles/file-bar.css">
         <link rel="stylesheet" href="styles/colors.css">
+        <link rel="stylesheet" href="styles/file-bar.css">
+        <link rel="stylesheet" href="styles/footer.css">
+        <link rel="stylesheet" href="styles/header.css">
+        <link rel="stylesheet" href="styles/editor.css">
+        <link rel="stylesheet" href="styles/dialog.css">
+        <link rel="stylesheet" href="styles/context-menu.css">
 
         <!-- <link rel="stylesheet" href="styles/document.css">
         <link rel="stylesheet" href="styles/editor.css"> -->
 
-        <!-- <script type="text/javascript" src="scripts/index.js"></script>
+        <script type="text/javascript" src="scripts/index.js"></script>
         <script type="text/javascript" src="scripts/elements.js"></script>
-        <script type="text/javascript" src="scripts/document.js"></script> -->
+        <script type="text/javascript" src="scripts/EditorAPI.js"></script>
+        <script type="text/javascript" src="scripts/document.js"></script>
+        <script type="text/javascript" src="scripts/toolPanel.js"></script>
+
+        <!-- Display the word count dialog when the user clicks the footer word count: -->
+        <script type="text/javascript">
+            window.addEventListener("load", function () {
+                document.querySelector(".word-count").addEventListener("click", () => {
+                    EditorAPI.dialog.toggleWordCount();
+                })
+            })
+        </script>
+
+        <!-- jQuery: -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+        <!-- Make all dialogs draggable: -->
+        <script type="text/javascript">
+            window.addEventListener("load", function() {
+                $(".dialog").draggable({
+                    containment: ".document",
+                });
+            })
+        </script>
+
+        <!-- When the user clicks a dialog, make it have `.in-front` (to be in front of all the other dialogs). Also focus it (`disableTyping()`): -->
+        <script type="text/javascript">
+            window.addEventListener("load", function() {
+                let dialogs = Array.from(document.querySelectorAll(".dialog"));
+                dialogs.forEach(dialog => {
+                    dialog.addEventListener("mousedown", function() {
+                        dialogs.forEach(dialog_ => {
+                            dialog_.classList.remove("in-front");
+                        })
+
+                        dialog.classList.add("in-front");
+                        disableTyping();
+                    })
+                })
+            })
+        </script>
+
+        <!-- Change 'Align' icon when the user clicks it: -->
+        <script type="text/javascript">
+            window.addEventListener("load", () => {
+                // All alignment types:
+                let alignmentTypes = ["format_align_left", "format_align_center", "format_align_right", "format_align_justify"];
+                let alignmentOptions = {
+                    "format_align_left": EditorAPI.document.alignLeft,
+                    "format_align_center": EditorAPI.document.alignCenter,
+                    "format_align_right": EditorAPI.document.alignRight,
+                    "format_align_justify": EditorAPI.document.alignJustify
+                }
+
+                // Add click event listener:
+                let alignment = document.getElementById("tool-panel-alignment");
+                alignment.addEventListener("click", function () {
+                    // Get the icon span:
+                    let span = alignment.querySelector("span");
+
+                    // Get the new alignment (ie. the one to the right of the current one in `alignmentTypes`):
+                    let newAlign = alignmentTypes[alignmentTypes.indexOf(span.innerHTML) + 1];
+
+                    // Set the alignment to left if it's at "justify" (last item in list):
+                    if (!newAlign) {
+                        newAlign = "format_align_left";
+                    }
+
+                    // Execute the new alignment option to the active paragraph:
+                    let alignmentOption = alignmentOptions[newAlign];
+                    if (alignmentOption) {
+                        alignmentOption();
+                    } else {
+                    }
+                    console.log(alignmentOption + "," + newAlign);
+
+                    // Change the old icon, to the new icon:
+                    span.innerHTML = newAlign;
+                })
+            })
+        </script>
     </head>
     <body>
-        <file-bar>
-            
-        </file-bar>
-        <header></header>
+        <file-bar></file-bar>
+        <header>
+            <div class="document-header">
+
+            </div>
+        </header>
         <main>
-            <!-- <div class="editor:editor">
-                <div class="document:documents">
-                    <div class="document:all-documents">
-                        <div class="document:document">
-                            <span class="single-character cursor-character">&#8203</span>
+            <div class="editor">
+                <div class="tool-panel-wrapper">
+                    <div class="tool-panel">
+                        <!-- Font variable options: -->
+                        <div class="tool-panel-item" id="tool-panel-bold" hmn-hint="<b>Bold</b>">
+                            <span class="material-symbols-outlined">format_bold</span>
+                        </div>
+                        <div class="tool-panel-item" id="tool-panel-underlined" hmn-hint="<u>Underline</u>">
+                            <span class="material-symbols-outlined">format_underlined</span>
+                        </div>
+                        <div class="tool-panel-item" id="tool-panel-italic" hmn-hint="<i>Italic</i>">
+                            <span class="material-symbols-outlined">format_italic</span>
+                        </div>
+                        <div class="tool-panel-item" id="tool-panel-font-color" hmn-hint="Text Color">
+                            <span class="material-symbols-outlined">format_color_text</span>
+                        </div>
+                        <div class="tool-panel-item" id="tool-panel-font-highlight" hmn-hint="Text Highlight">
+                            <span class="material-symbols-outlined">format_ink_highlighter</span>
+                        </div>
+
+                        <div class="tool-panel-break"><div></div></div>
+                        
+                        <!-- Font display options: -->
+                        <div class="tool-panel-item" id="tool-panel-alignment" hmn-hint="Alignment and Justification">
+                            <span class="material-symbols-outlined">format_align_left</span>
+                        </div>
+                        <div class="tool-panel-item" id="tool-panel-size" hmn-hint="Font Size">
+                            <span class="material-symbols-outlined">format_size</span>
+                        </div>
+                        <div class="tool-panel-item" id="tool-panel-font-family" hmn-hint="<span class='title-font'>Font Family</span>">
+                            <span class="material-symbols-outlined">format_bold</span>
+                        </div>
+
+                        <div class="tool-panel-break"><div></div></div>
+
+                        <!-- Superscript / Subscript: -->
+                        <div class="tool-panel-item" id="tool-panel-superscript" hmn-hint="<sup>Superscript<sup>">
+                            <span class="material-symbols-outlined">superscript</span>
+                        </div>
+                        <div class="tool-panel-item" id="tool-panel-subscript" hmn-hint="<sub>Subscript</sub>">
+                            <span class="material-symbols-outlined">subscript</span>
+                        </div>
+
+                        <div class="tool-panel-break"><div></div></div>
+
+                        <style>
+                            .clear-formatting-before {
+                                background: white;
+                                color: black;
+                                font-family: Impact, sans-serif;
+                            }
+                        </style>
+                        <div class="tool-panel-item" id="tool-panel-undo" hmn-hint="Undo the last edit">
+                            <span class="material-symbols-outlined">undo</span>
+                        </div>
+                        <div class="tool-panel-item" id="tool-panel-redo" hmn-hint="Redo the last edit">
+                            <span class="material-symbols-outlined">redo</span>
+                        </div>
+                        <div class="tool-panel-item" id="tool-panel-clear-format" hmn-hint="<span class='clear-formatting-before'>Clear</span> Formatting">
+                            <span class="material-symbols-outlined">format_clear</span>
                         </div>
                     </div>
                 </div>
-            </div> -->
+                <div class="document">
+                    <div class="documents">
+                        <div class="single-page active" id="page-1" style="padding-left: 1in;padding-right: 1in;padding-top: 1.5in;padding-bottom: 1.5in;">
+                            <div class="document-content">
+                                <p class="document-paragraph active first left">
+                                    <span class="single-char active">&ZeroWidthSpace;</span>
+                                </p>
+                                <!-- <table class="document-table document-paragraph">
+                                    <tr class="document-tr">
+                                        <td class="document-td"><p class="document-paragraph"><span class="single-char">&ZeroWidthSpace;</span></p></td>
+                                        <td class="document-td"><p class="document-paragraph"><span class="single-char">&ZeroWidthSpace;</span></p></td>
+                                    </tr>
+                                </table> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
         <footer></footer>
+        <div class="context-menu" style="display: none;">
+            <div class="context-menu-item">
+                <span class="context-menu-item-icon material-symbols-outlined">content_cut</span>
+                <span class="context-menu-item-label">Cut</span>
+            </div>
+            <div class="context-menu-item">
+                <span class="context-menu-item-icon material-symbols-outlined">content_copy</span>
+                <span class="context-menu-item-label">Copy</span>
+            </div>
+            <div class="context-menu-item">
+                <span class="context-menu-item-icon material-symbols-outlined">content_paste</span>
+                <span class="context-menu-item-label">Paste</span>
+            </div>
+            <div class="context-menu-item disabled">
+                <span class="context-menu-item-icon material-symbols-outlined">format_clear</span>
+                <span class="context-menu-item-label">Paste Without Formatting</span>
+            </div>
+            <div class="context-menu-item">
+                <span class="context-menu-item-icon material-symbols-outlined">delete</span>
+                <span class="context-menu-item-label">Delete</span>
+            </div>
+            <div class="context-menu-break"><div></div></div>
+            <div class="context-menu-item">
+                <span class="context-menu-item-icon material-symbols-outlined">select_all</span>
+                <span class="context-menu-item-label">Select All</span>
+            </div>
+            <div class="context-menu-item">
+                <span class="context-menu-item-icon material-symbols-outlined">deselect</span>
+                <span class="context-menu-item-label">Deselect</span>
+            </div>
+        </div>
+        <div class="accents-dialog dialog" style="display: none;">
+            <style>
+                .accents-dialog {
+                    width: 20em;
+                    height: fit-content;
+                }
+            </style>
+            <script type="text/javascript">
+                window.addEventListener("load", function() {
+                    let accentOptions = document.querySelectorAll(".accent-option");
+                    accentOptions = Array.from(accentOptions);
+                    accentOptions.forEach(element => {
+                        element.addEventListener("click", function (e) {
+                            if (e.shiftKey) {
+                                EditorAPI.document.insertChar(element.innerHTML.toUpperCase());
+                            } else {
+                                EditorAPI.document.insertChar(element.innerHTML.toLowerCase());
+                            }
+                        });
+                    })
+                })
+            </script>
+            <div class="dialog-titles">
+                <span class="dialog-title">Insert Accent:</span>
+                <span class="material-symbols-outlined close-dialog" onclick="this.parentElement.parentElement.style.display = 'none';"> close </span>
+            </div>
+            <div class="dialog-body">
+                <div class="dialog-property">
+                    <span class="dialog-property-label">Language:</span>
+                    <select class="dialog-property-input" id="accent-dialog-language">
+                        <option value="french">French</option>
+                        <option value="spanish">Spanish</option>
+                        <option value="german">German</option>
+                    </select>
+                    <script>
+                        window.addEventListener("load", () => {
+                            document.querySelector("." + document.getElementById("accent-dialog-language").value).style.display = "block";
+
+                            document.getElementById("accent-dialog-language").addEventListener("change", function() {
+                                Array.from(document.querySelectorAll(".accent-dialog-language-wrapper")).forEach(element => {
+                                    element.style.display = "none";
+                                })
+
+                                document.querySelector("." + document.getElementById("accent-dialog-language").value).style.display = "block";
+                            })
+                        })
+                    </script>
+                </div>
+                <br>
+                <div class="dialog-property dialog-option-grid">
+                    <span class="dialog-property-label">Accents:</span>
+                    <div class="french accent-dialog-language-wrapper" style="display: none;">
+                        <div class="dialog-property-input dialog-option-grid-options accent-dialog-all-accents">
+                            <button type="button" class="accent-option">â</button>
+                            <button type="button" class="accent-option">à</button>
+                            <button type="button" class="accent-option">ä</button>
+                            <button type="button" class="accent-option">é</button>
+                            <button type="button" class="accent-option">è</button>
+                            <button type="button" class="accent-option">ê</button>
+                            <button type="button" class="accent-option">ë</button>
+                            <button type="button" class="accent-option">ù</button>
+                            <button type="button" class="accent-option">û</button>
+                            <button type="button" class="accent-option">î</button>
+                            <button type="button" class="accent-option">ï</button>
+                            <button type="button" class="accent-option">ô</button>
+                            <button type="button" class="accent-option">ö</button>
+                            <button type="button" class="accent-option">ç</button>
+                            <button type="button" class="accent-option">œ</button>
+                            <button type="button" class="accent-option">æ</button>
+                        </div>
+                    </div>
+                    <div class="german accent-dialog-language-wrapper" style="display: none;">
+                        <div class="dialog-property-input dialog-option-grid-options accent-dialog-all-accents">
+                            <button type="button" class="accent-option">ä</button>
+                            <button type="button" class="accent-option">ö</button>
+                            <button type="button" class="accent-option">ü</button>
+                            <button type="button" class="accent-option">ß</button>
+                        </div>
+                    </div>
+                    <div class="spanish accent-dialog-language-wrapper" style="display: none;">
+                        <div class="dialog-property-input dialog-option-grid-options accent-dialog-all-accents">
+                            <button type="button" class="accent-option">á</button>
+                            <button type="button" class="accent-option">é</button>
+                            <button type="button" class="accent-option">í</button>
+                            <button type="button" class="accent-option">ó</button>
+                            <button type="button" class="accent-option">ú</button>
+                            <button type="button" class="accent-option">ü</button>
+                            <button type="button" class="accent-option">ñ</button>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <span class="dialog-tip"><kbd>Shift + Click</kbd> for Uppercase Accents</span>
+            </div>
+        </div>
+        <div class="word-count-dialog dialog" style="display: none;">
+            <style>
+                .word-count-dialog {
+                    width: 20em;
+                    height: fit-content;
+                }
+            </style>
+            <div class="dialog-titles">
+                <span class="dialog-title">Word Count:</span>
+                <span class="material-symbols-outlined close-dialog" onclick="this.parentElement.parentElement.style.display = 'none';"> close </span>
+            </div>
+            <div class="dialog-body">
+                <div class="dialog-property key-value">
+                    <span class="dialog-property-key">Page(s):</span>
+                    <span class="dialog-property-value" id="word-count-dialog-pages">1</span>
+                </div>
+                <div class="dialog-property key-value">
+                    <span class="dialog-property-key">Word(s):</span>
+                    <span class="dialog-property-value" id="word-count-dialog-words">1</span>
+                </div>
+                <div class="dialog-property key-value">
+                    <span class="dialog-property-key">Character(s):</span>
+                    <span class="dialog-property-value" id="word-count-dialog-chars">1</span>
+                </div>
+                <div class="dialog-property key-value bottom">
+                    <span class="dialog-property-key">Character(s) (Without Spaces):</span>
+                    <span class="dialog-property-value" id="word-count-dialog-chars-ns">10</span>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

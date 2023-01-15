@@ -1,0 +1,34 @@
+.editor\:editor {
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes cursor_blink {
+    0% {
+        background: transparent;
+    }
+
+    50% {
+        background: black;
+    }
+
+    100% {
+        background: transparent;
+    }
+}
+
+.cursor {
+    position: absolute;
+    width: 2.5px;
+    height: 1em;
+    animation: 1.5s cursor_blink infinite step-end;
+    left: 0;
+    top: 0;
+    z-index: 3;
+    animation-play-state: running;
+}
+
+.cursor.paused {
+    animation-play-state: paused;
+    background: black !important;
+}

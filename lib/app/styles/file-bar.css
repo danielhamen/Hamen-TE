@@ -1,0 +1,48 @@
+file-bar {
+    width: 100%;
+    height: var(--file-bar-size);
+    display: block;
+    position: absolute;
+    background: var(--background-light);
+    z-index: 998;
+}
+
+.file-bar {
+    height: 100%;
+    display: flex;
+}
+
+.file-bar-items {
+    display: flex;
+}
+
+.file-bar-item,.window-option {
+    padding-left: 1.4em;
+    padding-right: 1.4em;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    font-size: 0.9em;
+    cursor: pointer;
+    color: var(--text-default);
+}
+
+.file-bar-item:hover,.window-option:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.window-options {
+    height: 100%;
+    margin-left: auto;
+    display: flex;
+}
+
+.window-option {
+    padding-left: 1.6em;
+    padding-right: 1.6em;
+}
+
+.window-option > span {
+    font-size: 1.5em;
+}

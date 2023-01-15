@@ -1,0 +1,14 @@
+header {
+    width: 100%;
+    height: var(--header-size);
+    position: absolute;
+    top: var(--file-bar-size);
+    z-index: 997;
+    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.3);
+}
+
+.document-header {
+    width: 100%;
+    height: 100%;
+    background: var(--background-default);
+}

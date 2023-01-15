@@ -1,4 +1,212 @@
-.editor\:editor {
+.editor {
+    display: flex;
     width: 100%;
     height: 100%;
 }
+
+.tool-panel-wrapper {
+    position: absolute;
+    height: fit-content;
+    width: 3em;
+    background: var(--background-default);
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1em;
+    box-shadow: 0 0 30px 7px rgba(0, 0, 0, 0.2);
+    border-radius: 0.6em;
+    /* overflow: hidden; */
+}
+
+#tool-panel-bold {
+    border-top-left-radius: 0.6em;
+    border-top-right-radius: 0.6em;
+}
+
+#tool-panel-clear-format {
+    border-bottom-left-radius: 0.6em;
+    border-bottom-right-radius: 0.6em;
+}
+
+.tool-panel {
+    width: 100%;
+    height: 100%;
+}
+
+.tool-panel-item {
+    width: 100%;
+    height: 3em;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    transition: 0.12s;
+    cursor: pointer;
+    user-select: none;
+}
+
+.tool-panel-item:hover {
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.tool-panel-item:active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.tool-panel-item > span {
+    color: var(--text-primary);
+    user-select: none;
+}
+
+.tool-panel-break {
+    width: 100%;
+    height: 2px;
+    border-radius: 1em;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
+}
+
+.tool-panel-break > div {
+    background: rgba(144, 144, 144, 0.3);
+    width: 80%;
+    height: 100%;
+}
+
+@keyframes tool-panel-hint-appear-animation {
+    from {
+        opacity: 0%;
+    } to {
+        opacity: 100%;
+    }
+}
+
+.tool-panel-hint-wrapper {
+    opacity: 0;
+    display: none;
+    align-items: center;
+    width: max-content;
+    height: 2.5em;
+    transition: 0.2s;
+    pointer-events: none;
+    background: var(--background-light);
+    border-radius: 2em;
+    position: absolute;
+    left: 4em;
+    font-size: 0.95em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    box-shadow: 0 0 20px 4px rgba(0, 0, 0, 0.4);
+}
+
+.tool-panel-item:hover > .tool-panel-hint-wrapper {
+    display: flex;
+    animation: 0.1s tool-panel-hint-appear-animation forwards;
+    animation-delay: 1s;
+}
+
+.tool-panel-item:active > .tool-panel-hint-wrapper {
+    animation: none;
+}
+
+.tool-panel-hint-text {
+    color: var(--text-default);
+}
+
+.tool-panel-hint-shortcut {
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.tool-panel-hint-shortcut > kbd {
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.tool-panel-hint-shortcut::before {
+    content: '•';
+    padding-right: 0.7em;
+    padding-left: 0.7em;
+}
+
+.document {
+    width: 100%;
+    height: 100%;
+    background: var(--background-primary);
+    overflow-y: hidden;
+}
+
+.documents {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 1.1in;
+    padding-bottom: 0.75in;
+    box-sizing: border-box;
+}
+
+.single-page {
+    margin-top: 0.75in;
+    width: 8.5in;
+    height: 11in;
+    min-height: 11in;
+    border-radius: 0.15em;
+    box-shadow: 0 0 180px 100vh rgba(0, 0, 0, 0.1);
+    background: white;
+    box-sizing: border-box;
+}
+
+#page-1 {
+    margin-top: 0;
+}
+
+.single-page > .document-content {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    font-size: 12pt;
+    border: 0;
+    font-family: 'Noto Sans';
+    /* resize: none; */
+}
+
+.document-paragraph {
+    margin: 0;
+    /* overflow-wrap: break-word; */
+    word-break: break-all;
+}
+
+.document-paragraph.left {
+    text-align: left;
+}
+
+.document-paragraph.right {
+    text-align: right;
+}
+
+.document-paragraph.center {
+    text-align: center;
+}
+
+.document-paragraph.justify {
+    text-align: justify;
+}
+
+.document-table {
+    width: 100%;
+}
+
+.document-table,.document-th,.document-td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+/* .document-table-row > td {
+    border: 1px solid black;
+    border-collapse: collapse;
+} */

@@ -2,4 +2,26 @@
     --text-primary: hsl(0deg, 0%, 95%);
     --text-default: hsl(0deg, 0%, 90%);
     --text-secondary: hsl(0deg, 0%, 70%);
+
+    --background-dark: hsl(0deg, 0%, 11%);
+    --background-primary: hsl(0deg, 0%, 14%);
+    --background-default: hsl(0deg, 0%, 18%);
+    --background-secondary: hsl(0deg, 0%, 21%);
+    --background-light: hsl(0deg, 0%, 27%);
+
+    --file-bar-size: 3em;
+    --header-size: 0em;
+    --footer-size: 3em;
+
+    --dialog-background: hsl(0deg, 0%, 90%);
+    --dialog-border: 1px solid hsl(0deg, 0%, 75%);
+    --dialog-input-border: 1px solid hsl(0deg, 0%, 80%);
+    --dialog-input-border-radius: 0.3em;
+    --dialog-tip: hsl(0deg, 0%, 35%);
+
+    --context-menu-background: hsl(0deg, 0%, 20%);
+    --context-menu-border: 1px solid hsl(0deg, 0%, 40%);
+    --context-menu-text: hsl(0deg, 0%, 90%);
+    --context-menu-text-disabled: hsl(0deg, 0%, 60%);
+    --context-menu-icon: hsl(0deg, 0%, 80%);
 }

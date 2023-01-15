@@ -1,0 +1,126 @@
+.dialog {
+    position: absolute;
+    z-index: 55;
+
+    top: 50%;
+    left: 30%;
+
+    flex-direction: column;
+
+    background: var(--dialog-background);
+    border-radius: 0.2em;
+    border: var(--dialog-border);
+    box-shadow: 0px 0px 100px 3px rgb(0 0 0 / 25%);
+}
+
+.dialog.in-front {
+    z-index: 56;
+}
+
+.dialog-titles {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.05);
+    border-bottom: var(--dialog-border);
+    padding: 1em;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+}
+
+.dialog-title {
+    font-family: 'Exo 2', serif;
+    font-size: 1em;
+    font-weight: 600;
+    margin-left: 0.6em;
+}
+
+.dialog-body {
+    width: 100%;
+    height: calc(100% - 19px);
+    box-sizing: border-box;
+    padding: 1em;
+}
+
+.dialog-property-label {
+    font-size: 0.85em;
+    display: block;
+}
+
+.dialog-property-input {
+    font-family: 'Noto Sans', sans-serif;
+    width: 100%;
+}
+
+.dialog-property.key-value {
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 1.6em);
+    margin-left: calc(1.6em / 2);
+}
+
+.dialog-property-key {
+    font-size: 0.85em;
+    display: block;
+    margin-bottom: 0.8em;
+}
+
+.dialog-property.bottom > .dialog-property-key {
+    margin-bottom: 0;
+}
+
+.dialog-property-value {
+    font-size: 0.85em;
+    display: block;
+}
+
+select.dialog-property-input {
+    outline: none;
+    height: 2em;
+    margin-top: 0.6em;
+    font-size: 0.8em;
+    border: var(--dialog-input-border);
+    border-radius: var(--dialog-input-border-radius);
+    padding-left: 0.5em;
+    cursor: pointer;
+}
+
+.dialog-property-input.dialog-option-grid-options {
+    width: calc(100% + 0.3em);
+    margin-left: -0.3em;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.dialog-property.dialog-option-grid > .dialog-property-label {
+    margin-bottom: 0.3em;
+}
+
+.dialog-property-input.dialog-option-grid-options > button {
+    padding: 0.3em;
+    border: var(--dialog-input-border);
+    border-radius: var(--dialog-input-border-radius);
+    cursor: pointer;
+    margin: 0.3em;
+    width: 4em;
+    height: 2.4em;
+    outline: none !important;
+}
+
+.dialog-tip {
+    width: 100%;
+    text-align: center;
+    font-size: 0.8em;
+    color: var(--dialog-tip);
+    display: block;
+}
+
+.close-dialog {
+    font-size: 1.3em !important;
+    height: fit-content;
+    margin-left: auto;
+    margin-right: 0.1em;
+    cursor: pointer;
+}

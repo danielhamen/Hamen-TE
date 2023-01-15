@@ -9,12 +9,22 @@ body {
     margin: 0;
 
     width: 100vw;
+    max-width: 100%;
     height: 100vh;
+
+    font-family: 'Noto Sans', sans-serif;
 }
 
 main {
     width: 100%;
-    height: 100%;
+    height: calc(100% - var(--file-bar-size) - var(--header-size) - var(--footer-size));
+    position: absolute;
+    top: calc(var(--file-bar-size) + var(--header-size));
+}
+
+::selection {
+    background-color: rgb(159, 202, 255);
+    color: black;
 }
 
 .text {
@@ -26,34 +36,45 @@ main {
     font-family: 'Exo 2', serif;
 }
 
+::-webkit-scrollbar {
+    width: 1em;
+}
 
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-left: 2px solid rgba(255, 255, 255, 0.2);
+}
 
-/* @keyframes cursor_blink {
-    0% {
-        background: transparent;
-    }
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+}
 
-    50% {
-        background: black;
-    }
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
 
-    100% {
-        background: transparent;
-    }
+::-webkit-scrollbar-thumb:active {
+    background: rgba(255, 255, 255, 0.3);
 }
 
 .cursor {
-    position: absolute;
-    width: 2.5px;
+    width: 2px;
     height: 1em;
-    animation: 1.5s cursor_blink infinite step-end;
-    left: 0;
-    top: 0;
-    z-index: 3;
-    animation-play-state: running;
+    position: absolute;
+    z-index: 50;
+    margin-left: 1px;
+    margin-top: 2px;
+    background: black;
 }
 
-.cursor.paused {
-    animation-play-state: paused;
-    background: black !important;
-} */
+kbd {
+    border-radius: 3px;
+    font-size: 1em;
+    padding: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+    border: 1px solid #999999;
+    background: #d9d9d9;
+    color: hsl(0deg, 0%, 35%);
+}
