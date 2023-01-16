@@ -1,0 +1,14 @@
+import HamenTE;
+
+class AccentDialog(HamenTE.Types.Dialog) {
+  this.label = "";
+  this.idname = "";
+  this.options = {
+    closeDialog = true, // Show the "X" thing on the dialog
+    toggleVisibility = true
+  };
+
+  public void layout() {
+    let 
+  }
+}
