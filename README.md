@@ -1,10 +1,10 @@
-# Hamen TE
+# Hamen-TE
 
-## Introduction:
+Hamen-TE is a powerful multi-purpose text editor. Development is still early, so don't expect much!
 
-> Hamen TE (pronounced "Hay-men Tee-Eee"), is a visually-minimal, yet extremely powerful Text Editor.
-> 
-> Our software is split into 6 parts:
+The goal for Hamen-TE is to prevent the need to download many different software to do things
+
+> Our software is split into 4 parts:
 > <ul>
 > <li>Document Editor</li>
 > <li>Image Editor</li>
@@ -15,6 +15,10 @@
 > 
 
 ## Document Editor:
+
+## Image Editor:
+
+## Graph Editor:
 
 The Hamen TE Document Editor is like MS Word, or Google Docs, but jam-packed with many more **features**
 
