@@ -28,12 +28,12 @@ footer {
     font-family: 'Noto Sans';
     text-overflow: ellipsis;
     transition: 0.12s;
-    border-left: 4px solid rgb(93, 154, 210);
+    border-left: 4px solid rgb(149, 188, 224);
     margin-left: 0.7em;
 }
 
 #document-title:focus {
-    border-left: 4px solid rgb(82, 137, 255);
+    border-left: 4px solid rgb(82, 163, 255);
 }
 
 .footer-logo {

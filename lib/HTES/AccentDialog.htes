@@ -1,14 +1,12 @@
-import HamenTE;
+class AccentDialog(Dialog) {
+    this.label = "Insert Accent";
+    this.idname = "insert-accent-dialog";
+    this.options = {
+        closeDialog = true, // Show the "X" thing on the dialog
+        toggleVisibility = true
+    };
 
-class AccentDialog(HamenTE.Types.Dialog) {
-  this.label = "";
-  this.idname = "";
-  this.options = {
-    closeDialog = true, // Show the "X" thing on the dialog
-    toggleVisibility = true
-  };
-
-  public void layout() {
-    let 
-  }
+    const layout = {
+        let 
+    }
 }
