@@ -46,3 +46,77 @@ file-bar {
 .window-option > span {
     font-size: 1.5em;
 }
+
+.file-bar-item-content {
+    width: 20em;
+    height: fit-content;
+    background: var(--background-light);
+    box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 3.3em;
+    z-index: 66;
+    display: none;
+    transform: translate(-1.5em);
+    border-radius: 0.3em;
+    flex-direction: column;
+    overflow: hidden;
+    cursor: auto;
+}
+
+.file-bar-item:hover > .file-bar-item-content {
+    display: flex;
+}
+
+.file-bar-item-chevron {
+    padding-right: 1em;
+    font-size: 1.5em !important;
+}
+
+.file-bar-item-content-separator {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.05);
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.file-bar-item-content-item {
+    height: 3em;
+    width: 100%;
+    cursor: pointer;
+    /* border-bottom: 1px solid rgba(255, 255, 255, 0.2); */
+}
+
+.file-bar-item-content-item {
+    translate: 0.13s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.file-bar-item-content-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.file-bar-item-content-item:active {
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.file-bar-item-content-item.chevron:active {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.file-bar-item-content-item.chevron:active > span {
+    color: var(--text-default);
+}
+
+.file-bar-item-content-item:active > span {
+    color: var(--text-secondary);
+}
+
+.file-bar-item-content-item > span {
+    padding-left: 2em;
+    box-sizing: border-box;
+}
