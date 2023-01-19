@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="styles/editor.css">
         <link rel="stylesheet" href="styles/dialog.css">
         <link rel="stylesheet" href="styles/context-menu.css">
+        <link rel="stylesheet" href="styles/single-char.css">
 
         <!-- <link rel="stylesheet" href="styles/document.css">
         <link rel="stylesheet" href="styles/editor.css"> -->
@@ -24,6 +25,7 @@
         <script type="text/javascript" src="scripts/EditorAPI.js"></script>
         <script type="text/javascript" src="scripts/document.js"></script>
         <script type="text/javascript" src="scripts/toolPanel.js"></script>
+        <script type="text/javascript" src="User/Settings/Shortcuts.js"></script>
 
         <!-- Display the word count dialog when the user clicks the footer word count: -->
         <script type="text/javascript">
@@ -72,10 +74,10 @@
                 // All alignment types:
                 let alignmentTypes = ["format_align_left", "format_align_center", "format_align_right", "format_align_justify"];
                 let alignmentOptions = {
-                    "format_align_left": EditorAPI.document.alignLeft,
-                    "format_align_center": EditorAPI.document.alignCenter,
-                    "format_align_right": EditorAPI.document.alignRight,
-                    "format_align_justify": EditorAPI.document.alignJustify
+                    "format_align_left": EditorAPI.document.format.alignLeft,
+                    "format_align_center": EditorAPI.document.format.alignCenter,
+                    "format_align_right": EditorAPI.document.format.alignRight,
+                    "format_align_justify": EditorAPI.document.format.alignJustify
                 }
 
                 // Add click event listener:
@@ -96,9 +98,7 @@
                     let alignmentOption = alignmentOptions[newAlign];
                     if (alignmentOption) {
                         alignmentOption();
-                    } else {
                     }
-                    console.log(alignmentOption + "," + newAlign);
 
                     // Change the old icon, to the new icon:
                     span.innerHTML = newAlign;
@@ -118,13 +118,13 @@
                 <div class="tool-panel-wrapper">
                     <div class="tool-panel">
                         <!-- Font variable options: -->
-                        <div class="tool-panel-item" id="tool-panel-bold" hmn-hint="<b>Bold</b>">
+                        <div class="tool-panel-item" id="tool-panel-bold" onclick="EditorAPI.document.format.boldText();" hmn-hint="<b>Bold</b>">
                             <span class="material-symbols-outlined">format_bold</span>
                         </div>
-                        <div class="tool-panel-item" id="tool-panel-underlined" hmn-hint="<u>Underline</u>">
+                        <div class="tool-panel-item" id="tool-panel-underlined" onclick="EditorAPI.document.format.underlineText();" hmn-hint="<u>Underline</u>">
                             <span class="material-symbols-outlined">format_underlined</span>
                         </div>
-                        <div class="tool-panel-item" id="tool-panel-italic" hmn-hint="<i>Italic</i>">
+                        <div class="tool-panel-item" id="tool-panel-italic" onclick="EditorAPI.document.format.italicizeText();" hmn-hint="<i>Italic</i>">
                             <span class="material-symbols-outlined">format_italic</span>
                         </div>
                         <div class="tool-panel-item" id="tool-panel-font-color" hmn-hint="Text Color">
@@ -184,12 +184,6 @@
                                 <p class="document-paragraph active first left">
                                     <span class="single-char active zwc">&ZeroWidthSpace;</span>
                                 </p>
-                                <!-- <table class="document-table document-paragraph">
-                                    <tr class="document-tr">
-                                        <td class="document-td"><p class="document-paragraph"><span class="single-char">&ZeroWidthSpace;</span></p></td>
-                                        <td class="document-td"><p class="document-paragraph"><span class="single-char">&ZeroWidthSpace;</span></p></td>
-                                    </tr>
-                                </table> -->
                             </div>
                         </div>
                     </div>

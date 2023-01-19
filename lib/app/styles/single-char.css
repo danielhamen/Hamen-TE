@@ -1,0 +1,28 @@
+/* Default - No Formatting: */
+.single-char {
+    font-weight: normal;
+    text-decoration: none;
+}
+
+/* Weight: */
+.single-char.regular { font-weight: normal; }
+.single-char.bold { font-weight: bold; }
+.single-char.bolder { font-weight: bolder; }
+.single-char.lighter { font-weight: lighter; }
+.single-char.bold-100 { font-weight: 100; }
+.single-char.bold-200 { font-weight: 200; }
+.single-char.bold-300 { font-weight: 300; }
+.single-char.bold-400 { font-weight: 400; }
+.single-char.bold-500 { font-weight: 500; }
+.single-char.bold-600 { font-weight: 600; }
+.single-char.bold-700 { font-weight: 700; }
+.single-char.bold-800 { font-weight: 800; }
+.single-char.bold-900 { font-weight: 900; }
+
+/* Underline: */
+.single-char.underline { text-decoration: underline; }
+.single-char.no-underline { text-decoration: none; }
+
+/* Italics: */
+.single-char.no-italic { font-style: normal; }
+.single-char.italic { font-style: italic; }

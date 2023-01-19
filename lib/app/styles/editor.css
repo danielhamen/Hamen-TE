@@ -182,6 +182,7 @@
     /* overflow-wrap: break-word; */
     word-break: break-all;
     cursor: text;
+    display: block;
 }
 
 .document-paragraph.left {

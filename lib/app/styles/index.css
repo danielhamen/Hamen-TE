@@ -77,6 +77,9 @@ main {
     margin-top: 2px;
     background: black;
     animation: 1s cursorBlink infinite step-end;
+
+    user-select: none;
+    pointer-events: none;
 }
 
 .cursor.paused {
